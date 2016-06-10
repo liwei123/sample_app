@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '4.2.2'
+gem 'bunny',        '>= 2.3.0'
+gem 'slim-rails'
+gem 'factory_girl'
 gem 'bcrypt',       '3.1.7'
 gem 'faker',        '1.4.2'
 gem 'carrierwave',  '0.10.0'
@@ -22,6 +25,7 @@ group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
+  gem 'rspec-rails', '~> 3.4'
 end
 
 group :test do

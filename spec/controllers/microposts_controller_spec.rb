@@ -1,17 +1,30 @@
 require 'rails_helper'
 
-describe Micropost do
+describe MicropostsController, :type => :controller do
+  subject { Micropost.new }
 
-  context "redirect" do
-    let!(:michael) { FactoryGirl.create(name: "Michael", email: "michael@example.com", password_digest: User.digest('password'),
-                                        admin: true, activated:true, activated_at: Time.zone.now) }
-    let(:orange) { create :micropost, content: "I just ate an orange!", created_at: 10.minutes.ago, user: :michael}
+  context "redirect POST create" do
+    let(:make_request) { post :create, params }
+    let (:params) {{
+        :orange => { content: "Lorem ipsum"
+        }
+    }}
 
     it "checks redirect create when not logged in" do
-      current_count = Micropost.count
-      orange.save
-      expect(current_count+1).to eql(Micropost.count)
+      expect{make_request}.to change{Micropost.count}.by(0)
+      expect(response).to redirect_to(login_url)
     end
+  end
 
+  context "redirect POST destroy" do
+    let(:make_request) { post :destroy, params }
+    let(:micropost) { create :micropost}
+
+    let (:params) { {
+        :id => user.to_param,
+    } }
+    it "checks redirect destroy when not logged in" do
+
+    end
   end
 end
